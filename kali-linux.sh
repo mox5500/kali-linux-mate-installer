@@ -36,7 +36,7 @@ echo -e "${red}type number of your choice and hit Enter${NC}"
 echo " "
 
 PS3='Please enter your choice: '
-options=("minimal MATE desktop" "complete MATE desktop" "complete MATE desktop including a few extras")
+options=("minimal MATE desktop" "complete MATE desktop")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -48,10 +48,7 @@ break
             sh -c "sudo apt-get install mate-desktop-environment"
 break
             ;;
-        "complete MATE desktop including a few extras")
-            sh -c "sudo apt-get install mate-desktop-environment-extras"
-break
-            ;;
+        
         
         *) echo invalid option;;
     esac
