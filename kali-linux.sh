@@ -42,10 +42,32 @@ do
     case $opt in
         "minimal MATE desktop")
             sh -c "sudo apt-get install mate-desktop-environment-core"
+            sh -c "cp /etc/xdg/menus/mate-applications.menu mate-applications.menu.bak"
+			awk '{ if ( $0 ~ /<!-- Internet -->/ ) {
+          printf( "%s\n%s\n", "<!-- Kali Linux Menu --><MergeFile type=\"'path'\">applications-merged/kali-applications.menu</MergeFile>", $0 );
+	  # could use the following to append
+	  # printf( "%s\n%s\n", $0, "Some new appended text here" );
+     } else {
+          print $0;
+     }
+}' /etc/xdg/menus/mate-applications.menu > tmpmate.txt
+cat tmpmate.txt > /etc/xdg/menus/mate-applications.menu
+rm tmpmate.txt
 break
             ;;
         "complete MATE desktop")
             sh -c "sudo apt-get install mate-desktop-environment"
+            sh -c "cp /etc/xdg/menus/mate-applications.menu mate-applications.menu.bak"
+			awk '{ if ( $0 ~ /<!-- Internet -->/ ) {
+          printf( "%s\n%s\n", "<!-- Kali Linux Menu --><MergeFile type=\"'path'\">applications-merged/kali-applications.menu</MergeFile>", $0 );
+	  # could use the following to append
+	  # printf( "%s\n%s\n", $0, "Some new appended text here" );
+     } else {
+          print $0;
+     }
+}' /etc/xdg/menus/mate-applications.menu > tmpmate.txt
+cat tmpmate.txt > /etc/xdg/menus/mate-applications.menu
+rm tmpmate.txt
 break
             ;;
         
@@ -55,5 +77,6 @@ break
 done
 
 echo "installed"
+
 
 
