@@ -42,7 +42,7 @@ do
     case $opt in
         "minimal MATE desktop")
             sh -c "sudo apt-get install mate-desktop-environment-core"
-            sh -c "cp /etc/xdg/menus/mate-applications.menu mate-applications.menu.bak"
+            sh -c "cp /etc/xdg/menus/mate-applications.menu /etc/xdg/menus/mate-applications.menu.bak"
 			awk '{ if ( $0 ~ /<!-- Internet -->/ ) {
           printf( "%s\n%s\n", "<!-- Kali Linux Menu --><MergeFile type=\"'path'\">applications-merged/kali-applications.menu</MergeFile>", $0 );
 	  # could use the following to append
@@ -57,7 +57,7 @@ break
             ;;
         "complete MATE desktop")
             sh -c "sudo apt-get install mate-desktop-environment"
-            sh -c "cp /etc/xdg/menus/mate-applications.menu mate-applications.menu.bak"
+            sh -c "cp /etc/xdg/menus/mate-applications.menu /etc/xdg/menus/mate-applications.menu.bak"
 			awk '{ if ( $0 ~ /<!-- Internet -->/ ) {
           printf( "%s\n%s\n", "<!-- Kali Linux Menu --><MergeFile type=\"'path'\">applications-merged/kali-applications.menu</MergeFile>", $0 );
 	  # could use the following to append
